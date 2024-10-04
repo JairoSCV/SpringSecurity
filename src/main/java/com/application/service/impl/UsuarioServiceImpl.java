@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.application.entity.Rol;
 import com.application.entity.Usuario;
+import com.application.repository.RolRepository;
 import com.application.repository.UsuarioRepository;
 import com.application.service.IUsuarioService;
 
@@ -25,6 +26,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
     private UsuarioRepository usuarioRepository;
 
     @Autowired
+    private RolRepository rolRepository;
+
+    @Autowired
     private BCryptPasswordEncoder encoder;
 
     @Override
@@ -32,10 +36,19 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
         Set<Rol> rols = new HashSet<>();
 
+        usuario.getRoles().forEach(rol ->{
+            Rol existente = rolRepository.findRolByName(rol.getName());
+            if(existente != null){
+                rols.add(existente);
+            }else{
+                rols.add(rol);
+            }
+        });
+
         Usuario usu = Usuario.builder()
         .username(usuario.getUsername())
         .password(encoder.encode(usuario.getPassword()))
-        .roles(usuario.getRoles())
+        .roles(rols)
         .build();
 
         return usuarioRepository.save(usu);

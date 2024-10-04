@@ -37,13 +37,13 @@ public class SpringSecurityMineApplication {
 
 			Usuario usuario = Usuario.builder()
 				.username("cronaldo")
-				.password("$2a$10$CvFOTQLcf3fzZIhXKKvsY.nRNDE2hMw6XJXyeRViFgsF7noBj.BHC")
+				.password("$2a$10$VdJD4whzgOBbUzZHnQgBT.7SVWBq0BQxV1YTf5HWD0eVTSBTjZJCq")
 				.roles(Set.of(roleAdmin))
 				.build();
 
 			Usuario usuario2 = Usuario.builder()
 				.username("lmessi")
-				.password("$2a$10$ncJpzg3yVcVrD6YnVsHfiusBhJNKy6AEuEWsJgHW/GSgAyXF7AuUK")
+				.password("$2a$10$VdJD4whzgOBbUzZHnQgBT.7SVWBq0BQxV1YTf5HWD0eVTSBTjZJCq")
 				.roles(Set.of(roleAdmin2))
 				.build();
 
